@@ -1,0 +1,6 @@
+<mat-progress-spinner *ngIf="loading; else elseTemplate" mode="indeterminate"></mat-progress-spinner>
+<ng-template #elseTemplate>
+  <div>
+    <img class="image-item" src="{{ imageSrc }}">
+  </div>
+</ng-template>

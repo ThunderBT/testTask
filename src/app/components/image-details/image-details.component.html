@@ -1,0 +1,18 @@
+<header class="header-container">
+    <button mat-mini-fab class="arrow-back" color="basic" (click)="navigateBack()">
+        <mat-icon>arrow_back</mat-icon>
+    </button>
+    <button mat-raised-button (click)="imageEdit()">Edit Image</button>
+</header>
+<mat-divider></mat-divider>
+<div *ngIf="image" class="image-container">
+    <img class="image-preview" [src]="image.imageUrl">
+    <app-image-tooltip
+        class="image-tooltip"
+        [style.left.%]="image.posLeft"
+        [style.top.%]="image.posTop"
+        [bgColor]="image.tooltipBgColor"
+        [textColor]="image.tooltipTextColor"
+        [borderColor]="image.tooltipBorderColor"
+        [tooltipText]="image.tooltipText"></app-image-tooltip>
+</div>

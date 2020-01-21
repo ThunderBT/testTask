@@ -1,0 +1,16 @@
+.tooltip-text {
+    line-height: 30px;
+}
+
+.tooltip {
+    width: max-content;
+    min-width: 50px;
+    max-width: 300px;
+    height: 30px;
+    padding: 0 5px;
+    border: 1px solid;
+    user-select: none;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}

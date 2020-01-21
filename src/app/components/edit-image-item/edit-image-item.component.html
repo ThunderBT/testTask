@@ -1,0 +1,60 @@
+<header class="header-container">
+  <button mat-mini-fab class="arrow-back" color="basic" (click)="navigateBack()">
+    <mat-icon>arrow_back</mat-icon>
+  </button>
+</header>
+<mat-divider></mat-divider>
+<form class="image-form" [formGroup]="imageForm" (ngSubmit)="save()">
+  <mat-form-field class="form-field">
+    <input matInput [formControl]="imageForm.controls.tooltipText" placeholder="Text">
+  </mat-form-field>
+
+  <mat-form-field class="form-field">
+    <input matInput [formControl]="imageForm.controls.tooltipBgColor" placeholder="Tooltip Bg Color">
+  </mat-form-field>
+
+  <mat-form-field class="form-field">
+    <input matInput [formControl]="imageForm.controls.tooltipTextColor" placeholder="Tooltip Text Color">
+  </mat-form-field>
+
+  <mat-form-field class="form-field">
+    <input matInput [formControl]="imageForm.controls.tooltipBorderColor" placeholder="Tooltip Border Color">
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>Image save type</mat-label>
+    <mat-select [(value)]="selectedType">
+      <mat-option *ngFor="let type of imageSaveTypes" [value]="type">
+        {{ type }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <mat-form-field class="form-field" *ngIf="selectedType === 'URL'">
+    <input matInput [formControl]="imageForm.controls.imageUrl" placeholder="Image URL">
+  </mat-form-field>
+
+  <div class="upload-container" *ngIf="selectedType === 'Upload'">
+    <input #fileInput class="file-input" type="file" accept="image/*" (change)="onFileUpload($event)">
+    <span>{{ fileName }}</span>
+    <button mat-raised-button type="button" (click)="fileInput.click()">Select Image</button>
+  </div>
+  
+  <div class="image-preview-container">
+    <img class="image-preview" [src]="imageForm.get('imageUrl').value"
+      (load)="onImageLoad()"
+      (error)="onImageError()">
+    <app-image-tooltip *ngIf="isImageLoaded" appDraggable
+      [posLeft]="posLeft"
+      [posTop]="posTop"
+      class="image-tooltip"
+      [style.left.%]="posLeft"
+      [style.top.%]="posTop"
+      [bgColor]="imageForm.get('tooltipBgColor').value"
+      [textColor]="imageForm.get('tooltipTextColor').value"
+      [borderColor]="imageForm.get('tooltipBorderColor').value"
+      [tooltipText]="imageForm.get('tooltipText').value"
+      (dragMove)="onDragMove($event)"></app-image-tooltip>
+  </div>
+  <button mat-raised-button type="submit" [disabled]="!imageForm.valid">Save</button>
+</form>

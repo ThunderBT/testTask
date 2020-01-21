@@ -1,0 +1,16 @@
+<div>
+  <div class="add-btn-container">
+    <button mat-raised-button routerLink="/add-image">Add Image</button>
+  </div>
+  <mat-divider></mat-divider>
+  <div class="images-container">
+    <mat-grid-list [cols]="gridCols" rowHeight="2:1" gutterSize="20px">
+      <mat-grid-tile class="image-item" *ngFor="let image of images; index as i; trackBy: trackByFunc">
+        <app-image-item [imageSrc]="image.imageUrl" (click)="imageDetails(image)"></app-image-item>
+        <button mat-mini-fab class="remove-btn" color="basic" (click)="removeImage(image, i)">
+          <mat-icon>close</mat-icon>
+        </button>
+      </mat-grid-tile>
+    </mat-grid-list>
+  </div>
+</div>

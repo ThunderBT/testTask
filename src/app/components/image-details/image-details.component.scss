@@ -1,0 +1,27 @@
+.image-container {
+    position: relative;
+    margin: 10px 40px; 
+    &:hover {
+        .image-tooltip {
+            visibility: visible;
+        }
+    }
+}
+
+.image-tooltip {
+    position: absolute;
+    visibility: hidden;
+}
+
+.header-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 70px;
+    padding: 0 10px;
+}
+
+.image-preview {
+    display: block;
+    width: 100%;
+}
